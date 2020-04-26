@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: frontend-lab19
-          image: thhel123/front-service
+          image: thhel123/frontend-lab19
           imagePullPolicy: Always
           ports:
             - containerPort: 3000

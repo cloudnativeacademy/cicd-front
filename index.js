@@ -7,5 +7,5 @@ app.use(express.static('public'));
 
 // Port binding
 app.listen(port, function() {
-  console.log(`Cloud Adademy front app listening on port ${port}`);
+  console.log(`Cloud Academy front app listening on port ${port}`);
 });
