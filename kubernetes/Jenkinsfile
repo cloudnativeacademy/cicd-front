@@ -1,5 +1,4 @@
 def label = "worker-${UUID.randomUUID().toString()}"
-
 // Slack 알림
 podTemplate(label: label, containers: [
     // #0 필요한 Pod생성
@@ -11,7 +10,6 @@ podTemplate(label: label, containers: [
     containerTemplate(name: 'kubectl', image: 'roffe/kubectl', command: 'cat', ttyEnabled: true)
 ]) {
   node(label) {
-
     // 예외처리 구문
     try {
         // Slack - 빌드 시작시
@@ -49,10 +47,11 @@ podTemplate(label: label, containers: [
         // #4 Sonarqube 정적분석 Stage
         stage('Static Code Analysis') {
             container('scanner') {
-            sh "sonar-scanner \
-                -Dsonar.projectName=${sonarQubeProject} \
-                -Dsonar.host.url=${sonarQubeURL} \
-                -Dsonar.projectBaseDir=./"
+                sh "sonar-scanner \
+                    -Dsonar.projectKey=${sonarQubeProject} \
+                    -Dsonar.projectName=${sonarQubeProject} \
+                    -Dsonar.host.url=${sonarQubeURL} \
+                    -Dsonar.projectBaseDir=./"
             }
         }
               
